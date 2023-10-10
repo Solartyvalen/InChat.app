@@ -11,6 +11,8 @@
 		042DAAA32AD1FA2100536D68 /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042DAAA22AD1FA2100536D68 /* FeedController.swift */; };
 		042DAAA92AD2D95100536D68 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042DAAA82AD2D95100536D68 /* UserProfileController.swift */; };
 		042DAAAB2AD2DA9C00536D68 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042DAAAA2AD2DA9C00536D68 /* UserProfileHeader.swift */; };
+		047047B62AD34AAC005609DD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047047B52AD34AAC005609DD /* UserModel.swift */; };
+		04C5B3E22AD4C272005274A8 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C5B3E12AD4C272005274A8 /* Firebase.swift */; };
 		04E2F1602ABFC53B001D02A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2F15F2ABFC53B001D02A5 /* AppDelegate.swift */; };
 		04E2F1622ABFC53B001D02A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E2F1612ABFC53B001D02A5 /* SceneDelegate.swift */; };
 		04E2F1672ABFC53B001D02A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04E2F1652ABFC53B001D02A5 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 		042DAAA22AD1FA2100536D68 /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
 		042DAAA82AD2D95100536D68 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		042DAAAA2AD2DA9C00536D68 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		047047B52AD34AAC005609DD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		04C5B3E12AD4C272005274A8 /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
 		04E2F15C2ABFC53B001D02A5 /* InChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04E2F15F2ABFC53B001D02A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04E2F1612ABFC53B001D02A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +72,14 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		047047B42AD34A74005609DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				047047B52AD34AAC005609DD /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		04E2F1532ABFC53B001D02A5 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +101,7 @@
 		04E2F15E2ABFC53B001D02A5 /* InChat */ = {
 			isa = PBXGroup;
 			children = (
+				047047B42AD34A74005609DD /* Model */,
 				04E2F1762ABFD1A6001D02A5 /* Utils */,
 				04E2F1732ABFC614001D02A5 /* Login */,
 				04E2F15F2ABFC53B001D02A5 /* AppDelegate.swift */,
@@ -118,6 +131,7 @@
 			children = (
 				04E2F1772ABFD1C9001D02A5 /* Utils.swift */,
 				04E2F17B2AC21FAD001D02A5 /* CustomTextField.swift */,
+				04C5B3E12AD4C272005274A8 /* Firebase.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -261,8 +275,10 @@
 				04E2F1602ABFC53B001D02A5 /* AppDelegate.swift in Sources */,
 				04E2F1622ABFC53B001D02A5 /* SceneDelegate.swift in Sources */,
 				042DAAA02AD14D6100536D68 /* MainTabVC.swift in Sources */,
+				04C5B3E22AD4C272005274A8 /* Firebase.swift in Sources */,
 				04E2F1782ABFD1C9001D02A5 /* Utils.swift in Sources */,
 				042DAAAB2AD2DA9C00536D68 /* UserProfileHeader.swift in Sources */,
+				047047B62AD34AAC005609DD /* UserModel.swift in Sources */,
 				042DAAA92AD2D95100536D68 /* UserProfileController.swift in Sources */,
 				042DAAA32AD1FA2100536D68 /* FeedController.swift in Sources */,
 			);

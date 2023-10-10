@@ -6,23 +6,58 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 private let reuseIdentifier = "Cell"
 private let userReuseIdentifier = "UserProfileCell"
 
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.backgroundColor = .white
         
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: userReuseIdentifier)
-
+        
+        fetchCurrentUser()
+        
         // Do any additional setup after loading the view.
     }
-
-  
+    
+    // MARK: - API
+    
+    var user: User?
+    
+    fileprivate func fetchCurrentUser() {
+        
+        Firestore.firestore().fetchCurrentUser { (user, err) in
+            if let err = err {
+                print("Faild to fetch user", err.localizedDescription)
+                return
+            }
+            
+            self.user = user
+            print(user?.username ?? "")
+            
+           // self.navigationItem.title = user?.username
+            
+            /*  guard let currentUid = Auth.auth().currentUser?.uid else {return}
+             Firestore.firestore().collection("users").document(currentUid).getDocument { (snapshot, err) in
+             if let err = err {
+             print("Faild", err.localizedDescription)
+             return
+             }
+             guard let dictionary = snapshot?.data() else {return}
+             let user = User(dictionary: dictionary)
+             self.user = user
+             // print(user.name ?? "")
+             */
+        }
+    }
 
     // MARK: UICollectionViewDataSource
 

@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
+import FirebaseDatabase
 
 
 
@@ -142,12 +144,11 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                   }
                     print("Eспешно получена ссылка на картинку")
                     
-                    guard let uid = user?.user.uid else {return}
+                    guard let uid = Auth.auth().currentUser?.uid else {return}
                     
-                    let dictionaryValues = ["name": fullName, "username": username, "profileImageUrl": profileImageUrl]
-                    let values = [uid: dictionaryValues]
+                    let docData = ["uid": uid, "name": fullName, "username": username, "profileImageUrl": profileImageUrl]
                     
-                    Firestore.firestore().collection("users").document(uid).setData(values) { (err) in
+                    Firestore.firestore().collection("users").document(uid).setData(docData) { (err) in
                         if let err = err {
                             print("Falied", err.localizedDescription)
                             return
