@@ -14,4 +14,5 @@ target 'InChat' do
         pod 'Firebase/Auth'
         pod 'Firebase/Firestore'
         pod 'ActiveLabel'
+        pod 'SDWebImage'
 end

@@ -7,9 +7,11 @@
 
 import UIKit
 import Firebase
+import FirebaseCore
 import FirebaseFirestore
 
-private let reuseIdentifier = "Cell"
+
+private let cellId = "Cell"
 private let userReuseIdentifier = "UserProfileCell"
 
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -20,11 +22,11 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         collectionView.backgroundColor = .white
         
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         self.collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: userReuseIdentifier)
         
         fetchCurrentUser()
-        
+        configureLogOutButton()
         // Do any additional setup after loading the view.
     }
     
@@ -42,6 +44,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             
             self.user = user
             print(user?.username ?? "")
+            self.navigationItem.title = "@\(user?.username ?? "")"
             
            // self.navigationItem.title = user?.username
             
@@ -58,18 +61,44 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
              */
         }
     }
+    
+    //MARK: - CollectionView
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of items
+        return 20
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        cell.backgroundColor = .lightGray
+    
+        // Configure the cell
+    
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                    sizeForItemAt indexPath: IndexPath)  -> CGSize {
+        
+        let width = view.frame.width / 3
+        
+        return CGSize(width: width - 2, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -79,15 +108,41 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: userReuseIdentifier, for: indexPath) as! UserProfileHeader
+       
+       if let user = self.user {
+            header.user = user
+        } else {
+            print("Пользователь не установлен")
+        }
+        
+        
         return header
     }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+//MARK: - Configure LogOut
     
-        // Configure the cell
-    
-        return cell
+    fileprivate func configureLogOutButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogOut))
+        navigationItem.rightBarButtonItem?.tintColor = .black
     }
-
+    
+    @objc fileprivate func handleLogOut() {
+        print("log out")
+        
+        // set up alert controller
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (_) in
+            do {
+                try Auth.auth().signOut()
+                let loginVC = LoginController()
+                let navController  = UINavigationController(rootViewController: loginVC)
+                navController.modalPresentationStyle = .fullScreen
+                self.present(navController, animated: true, completion: nil)
+            } catch {
+                print("Faild to sign out")
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert,animated: true, completion: nil)
+    }
 }

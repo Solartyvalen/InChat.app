@@ -12,8 +12,11 @@ class UserProfileHeader: UICollectionViewCell {
     var user: User? {
         
         didSet {
+            
             let fullname = user?.name
             nameLabel.text = fullname
+            
+            profileImageView.loadImage(with: user?.profileImage ?? "")
         }
         
     }
@@ -30,8 +33,9 @@ class UserProfileHeader: UICollectionViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Solarty"
+       // label.text = ""
         label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textColor = UIColor.black
         return label
     }()
     
@@ -39,6 +43,8 @@ class UserProfileHeader: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.textColor = UIColor.black
+        
         let attributedText = NSMutableAttributedString(string: "0\n", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: "Посты", attributes: [.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
         label.attributedText = attributedText
@@ -49,6 +55,7 @@ class UserProfileHeader: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.textColor = UIColor.black
         
         let attributedText = NSMutableAttributedString(string: "0\n", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: "Подписчики", attributes: [.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
@@ -60,6 +67,7 @@ class UserProfileHeader: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.textColor = UIColor.black
         
         let attributedText = NSMutableAttributedString(string: "0\n", attributes: [.font: UIFont.boldSystemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: "Подписки", attributes: [.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
@@ -82,21 +90,21 @@ class UserProfileHeader: UICollectionViewCell {
     let griButtun: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(imageLiteralResourceName: "grid"), for: .normal)
-        button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.tintColor = UIColor(white: 0, alpha: 0.3)
         return button
     }()
     
     let listButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(imageLiteralResourceName: "list"), for: .normal)
-        button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.tintColor = UIColor(white: 0, alpha: 0.3)
         return button
     }()
     
     let bookmarkButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(imageLiteralResourceName: "ribbon"), for: .normal)
-        button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.tintColor = UIColor(white: 0, alpha: 0.3)
         return button
     }()
     

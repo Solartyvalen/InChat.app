@@ -23,10 +23,11 @@ extension UITextField {
     class func setupTextField(placeholder: String, hideText: Bool) -> UITextField {
         let tf = CustomTextField(padding: 16)
         tf.placeholder = placeholder
-        tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
+        tf.backgroundColor = UIColor(white: 0, alpha: 0.15)
         tf.layer.cornerRadius = 20
         tf.font = UIFont.systemFont(ofSize: 18)
         tf.isSecureTextEntry = hideText
+        tf.textColor = UIColor.black
         return tf
         
     }

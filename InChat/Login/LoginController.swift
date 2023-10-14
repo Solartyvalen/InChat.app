@@ -7,6 +7,8 @@
 
 import UIKit
 import Firebase
+import FirebaseCore
+import FirebaseFirestore
 
 class LoginController: UIViewController {
     
@@ -98,7 +100,7 @@ class LoginController: UIViewController {
     }
     
     private func configureViewComponents() {
-       // navigationController?.navigationBar.isHidden = true
+        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         view.addSubview(logoContainerView)
         logoContainerView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: 150))

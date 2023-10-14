@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import FirebaseCore
 
 class MainTabVC: UITabBarController, UITabBarControllerDelegate {
 

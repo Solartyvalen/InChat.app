@@ -15,12 +15,17 @@ class FeedController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = .white
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        configureLogOutButton()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(imageLiteralResourceName: "send").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(toMessageVC))
+    }
+    
+    @objc fileprivate func toMessageVC() {
+      let messageVC  = MessagesVC()
+        navigationController?.pushViewController(messageVC, animated: true)
     }
 
     // MARK: UICollectionViewDataSource
@@ -41,30 +46,5 @@ class FeedController: UICollectionViewController {
         // Configure the cell
     
         return cell
-    }
-    
-    fileprivate func configureLogOutButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogOut))
-        navigationItem.leftBarButtonItem?.tintColor = .black
-    }
-    
-    @objc fileprivate func handleLogOut() {
-        print("log out")
-        // set up alert controller
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
-            do {
-                try Auth.auth().signOut()
-                let loginVC = LoginController()
-                let navController  = UINavigationController(rootViewController: loginVC)
-                navController.modalPresentationStyle = .fullScreen
-                self.present(navController, animated: true, completion: nil)
-            } catch {
-                print("Faild to sign out")
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(alert,animated: true, completion: nil)
     }
 }
