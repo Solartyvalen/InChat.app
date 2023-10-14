@@ -23,13 +23,7 @@ class UserProfileHeader: UICollectionViewCell {
     
     // MARK: - Properties
     
-    let profileImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .lightGray
-        iv.clipsToBounds = true
-        return iv
-    }()
+    let profileImageView = CustomUIImageView(frame: .zero)
     
     let nameLabel: UILabel = {
         let label = UILabel()
