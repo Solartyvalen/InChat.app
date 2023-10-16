@@ -8,6 +8,10 @@
 import UIKit
 import Firebase
 import FirebaseCore
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
+import FirebaseFirestore
 
 class MainTabVC: UITabBarController, UITabBarControllerDelegate {
 
@@ -18,15 +22,21 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
         
         tabBar.tintColor = .black
         
-        let feed = createNavController(viewController: FeedController(collectionViewLayout: UICollectionViewLayout()), title: "Feed", unselectedImage: UIImage(imageLiteralResourceName: "home_unselected"))
-        let search = createNavController(viewController: UIViewController(), title: "Search", unselectedImage: UIImage(imageLiteralResourceName: "search_selected"))
-        let newPost = createNavController(viewController: UIViewController(), title: "Post", unselectedImage: UIImage(imageLiteralResourceName: "post"))
-        let likes = createNavController(viewController: UIViewController(), title: "Likes", unselectedImage: UIImage(imageLiteralResourceName: "like_unselected"))
-        let profile = createNavController(viewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Profile", unselectedImage: UIImage(imageLiteralResourceName: "profile_unselected"))
+       
         
-        viewControllers = [feed, search, newPost, likes, profile]
+        configure()
         
         ifUserLogIn()
+    }
+    
+    func configure() {
+        let feed = createNavController(viewController: FeedController(collectionViewLayout: UICollectionViewLayout()), title: "Feed", unselectedImage: UIImage(imageLiteralResourceName: "home_unselected"))
+               let search = createNavController(viewController: UIViewController(), title: "Search", unselectedImage: UIImage(imageLiteralResourceName: "search_selected"))
+               let newPost = createNavController(viewController: UIViewController(), title: "Post", unselectedImage: UIImage(imageLiteralResourceName: "post"))
+               let likes = createNavController(viewController: UIViewController(), title: "Likes", unselectedImage: UIImage(imageLiteralResourceName: "like_unselected"))
+               let profile = createNavController(viewController: UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()), title: "Profile", unselectedImage: UIImage(imageLiteralResourceName: "profile_unselected"))
+               
+               viewControllers = [feed, search, newPost, likes, profile]
     }
     
     fileprivate func ifUserLogIn() {
@@ -37,8 +47,9 @@ class MainTabVC: UITabBarController, UITabBarControllerDelegate {
                 navController.modalPresentationStyle = .fullScreen
                 self.present(navController, animated: true, completion: nil)
             }
-            
-            return
+        } else {
+            print("User is Logged in")
+            configure()
         }
     }
     

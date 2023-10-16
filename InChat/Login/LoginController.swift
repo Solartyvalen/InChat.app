@@ -9,6 +9,9 @@ import UIKit
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
 
 class LoginController: UIViewController {
     
@@ -80,9 +83,19 @@ class LoginController: UIViewController {
             
             print("Succesfuly signed user in")
             
-            let mainTabVC = MainTabVC()
-            mainTabVC.modalPresentationStyle = .fullScreen
-            self.present(mainTabVC, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                let keyWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow}).first
+                
+                if let maintabVC = keyWindow?.rootViewController as? MainTabVC {
+                    maintabVC.configure()
+                }
+                
+                self.dismiss(animated: true)
+            }
+
+        //let mainTabVC = MainTabVC()
+        //mainTabVC.modalPresentationStyle = .fullScreen
+        //self.present(mainTabVC, animated: true, completion: nil)
         }
     }
     

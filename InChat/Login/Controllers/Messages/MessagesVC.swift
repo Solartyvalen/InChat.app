@@ -6,11 +6,17 @@
 //
 
 import Foundation
+import FirebaseCore
 import Firebase
+import FirebaseFirestore
 
 fileprivate let cellId = "cellId"
 
 class MessagesVC: UITableViewController {
+    
+    //MARK: - Properties
+    
+    var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +31,7 @@ class MessagesVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return messages.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,7 +51,18 @@ class MessagesVC: UITableViewController {
     }
    
     @objc fileprivate func createMessage() {
-        print("New message")
+       
+     let newMessageVC = NewMessageVC()
+        newMessageVC.messagesController = self
+        let navcontroller = UINavigationController(rootViewController: newMessageVC)
+        present(navcontroller, animated: true, completion: nil)
+    }
+    
+    func showChatController(for user: User) {
+        print("show chat controller")
+        let chatController = ChatController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatController.user = user
+        navigationController?.pushViewController(chatController, animated: true)
     }
     
 }

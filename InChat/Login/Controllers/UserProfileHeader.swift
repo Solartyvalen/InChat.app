@@ -81,7 +81,7 @@ class UserProfileHeader: UICollectionViewCell {
         return button
     }()
     
-    let griButtun: UIButton = {
+    let gridButtun: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(imageLiteralResourceName: "grid"), for: .normal)
         button.tintColor = UIColor(white: 0, alpha: 0.3)
@@ -146,7 +146,7 @@ class UserProfileHeader: UICollectionViewCell {
         let bottomDividerView = UIView()
         bottomDividerView.backgroundColor = .lightGray
         
-        let stackView = UIStackView(arrangedSubviews: [griButtun, listButton, bookmarkButton])
+        let stackView = UIStackView(arrangedSubviews: [gridButtun, listButton, bookmarkButton])
         
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually

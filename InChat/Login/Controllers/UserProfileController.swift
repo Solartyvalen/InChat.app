@@ -9,6 +9,9 @@ import UIKit
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseDatabase
+import FirebaseStorage
+import FirebaseAuth
 
 
 private let cellId = "Cell"
@@ -109,11 +112,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: userReuseIdentifier, for: indexPath) as! UserProfileHeader
        
-       if let user = self.user {
-            header.user = user
-        } else {
-            print("Пользователь не установлен")
-        }
+       if let user = self.user {header.user = user}
         
         
         return header

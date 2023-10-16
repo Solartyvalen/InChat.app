@@ -10,6 +10,8 @@ import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth
+import FirebaseDatabase
 
 
 
