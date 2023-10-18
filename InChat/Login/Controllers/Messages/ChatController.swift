@@ -19,14 +19,43 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .systemPink
+        collectionView.backgroundColor = .systemBackground
 
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        
+        configureNavBar()
     }
-
+    
+    fileprivate func configureNavBar() {
+        
+        guard let user = self.user else {return}
+        navigationItem.title = "@\(user.username ?? "")"
+        
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(handleInfoButtonTapped), for: .touchUpInside)
+        
+        let infoBarButtonItem = UIBarButtonItem(customView: infoButton)
+        navigationItem.rightBarButtonItem = infoBarButtonItem
+        
+    }
+    
+    @objc fileprivate func handleInfoButtonTapped() {
+        print("Info button tapped")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //tabBarController?.tabBar.isHidden = true
+        hideTabBar(isHidden: true, duration: 0.4)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //tabBarController?.tabBar.isHidden = false
+        hideTabBar(isHidden: false, duration: 0.4)
+    }
+    
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

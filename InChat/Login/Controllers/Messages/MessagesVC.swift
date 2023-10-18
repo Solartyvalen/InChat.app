@@ -59,7 +59,7 @@ class MessagesVC: UITableViewController {
     }
     
     func showChatController(for user: User) {
-        print("show chat controller")
+       // print("show chat controller")
         let chatController = ChatController(collectionViewLayout: UICollectionViewFlowLayout())
         chatController.user = user
         navigationController?.pushViewController(chatController, animated: true)

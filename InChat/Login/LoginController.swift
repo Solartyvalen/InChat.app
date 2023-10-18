@@ -83,19 +83,20 @@ class LoginController: UIViewController {
             
             print("Succesfuly signed user in")
             
-            DispatchQueue.main.async {
-                let keyWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow}).first
+           //DispatchQueue.main.async {
+          //let keyWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow}).first
                 
-                if let maintabVC = keyWindow?.rootViewController as? MainTabVC {
-                    maintabVC.configure()
-                }
+          //if let maintabVC = keyWindow?.rootViewController as? MainTabVC {
+         // maintabVC.configure()
+        //}
                 
-                self.dismiss(animated: true)
-            }
+         //self.dismiss(animated: true)
+        //}
 
-        //let mainTabVC = MainTabVC()
-        //mainTabVC.modalPresentationStyle = .fullScreen
-        //self.present(mainTabVC, animated: true, completion: nil)
+        let mainTabVC = MainTabVC()
+        mainTabVC.modalPresentationStyle = .fullScreen
+        self.present(mainTabVC, animated: true, completion: nil)
+            
         }
     }
     
