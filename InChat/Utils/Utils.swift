@@ -7,6 +7,29 @@
 
 import UIKit
 
+// - hide Tab Bar
+
+ extension UIViewController {
+
+     func hideTabBar(isHidden: Bool, duration: TimeInterval) {
+
+         if let frame = self.tabBarController?.tabBar.frame {
+             let state: CGFloat = isHidden ? 1 : -1
+             let y = frame.origin.y + (frame.size.height * state)
+
+             //        print(frame)
+             UIView.animate(withDuration: duration) {
+                 self.tabBarController?.tabBar.frame = CGRect(x: frame.origin.x, y: y, width: frame.width, height: frame.height)
+             }
+
+             return
+         }
+
+         self.tabBarController?.tabBar.isHidden = isHidden
+     }
+
+ }
+
 extension UIButton {
     class func setupButton(title: String, color: UIColor) -> UIButton {
         let button = UIButton(type: .system)
