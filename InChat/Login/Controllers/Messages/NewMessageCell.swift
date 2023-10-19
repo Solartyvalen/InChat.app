@@ -15,7 +15,7 @@ class NewMessageCell: UITableViewCell {
     var user: User? {
         didSet {
             
-            guard let url = URL(string: user?.profileImage ?? "") else {return}
+            guard URL(string: user?.profileImage ?? "") != nil else {return}
             
             profileImageView.loadImage(with: user?.profileImage ?? "")
             
