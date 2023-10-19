@@ -39,7 +39,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     fileprivate func fetchCurrentUser() {
         
-        Firestore.firestore().fetchCurrentUser { (user, err) in
+        Firestore.firestore().fetchCurrentUser { (user, err )in
             if let err = err {
                 print("Faild to fetch user", err.localizedDescription)
                 return

@@ -19,7 +19,7 @@ class User {
         
         self.name = dictionary["name"] as? String ?? ""
         self.username = dictionary["username"] as? String ?? ""
-        self.profileImage = dictionary["profileImage"] as? String ?? ""
+        self.profileImage = dictionary["profileImageUrl"] as? String ?? ""
         self.uid = dictionary["uid"] as? String ?? ""
         
     }
