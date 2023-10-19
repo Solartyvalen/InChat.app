@@ -56,7 +56,7 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.backgroundColor = .white
         // Register cell classes
         self.collectionView!.register(ChatCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
+        collectionView.alwaysBounceVertical = true
         configureNavBar()
     }
     
@@ -113,12 +113,12 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatCell
         
         // Configure the cell
-        cell.backgroundColor = .systemBlue
+       // cell.backgroundColor = .systemBlue
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 2, height: 50)
+        return CGSize(width: view.frame.width, height: 50)
     }
 }
