@@ -54,11 +54,10 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
         super.viewDidLoad()
         
         collectionView.backgroundColor = .white
-
         // Register cell classes
         self.collectionView!.register(ChatCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        
+        configureNavBar()
     }
     
     override var inputAccessoryView: UIView? {
@@ -69,6 +68,22 @@ class ChatController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     override var canBecomeFirstResponder: Bool {
         return true
+    }
+    
+    fileprivate func configureNavBar() {
+        
+        guard let user = self.user else {return}
+        navigationItem.title = "@\(user.username ?? "")"
+        
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(handleInfoButtonTapped), for: .touchUpInside)
+        
+        let infoBarButtonItem = UIBarButtonItem(customView: infoButton)
+        navigationItem.rightBarButtonItem = infoBarButtonItem
+
+    }
+    @objc fileprivate func handleInfoButtonTapped() {
+        print("Info button taped")
     }
     
     override func viewWillAppear(_ animated: Bool) {
